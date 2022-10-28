@@ -1,0 +1,196 @@
+mysql> create database insurance;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> use insurance;
+Database changed
+
+mysql> show tables;
+Empty set (0.01 sec)
+
+mysql> show tables;
++---------------------------------+
+ |    Tables_in_insurance     |
++---------------------------------+
+| admin                                |
+| approvals		        |
+| approved                           |
+| category                            |
+| disapproved                      |
+| policies                             |
+| queries                              |
+| user                                   |
++--------------------------------+
+8 rows in set (0.00 sec)
+
+mysql> desc admin;
++------------+-----------------+-------+------+---------+--------+
+| Field        | Type              | Null   | Key | Default| Extra  |
++------------+-----------------+-------+------+---------+--------+
+| aid           | varchar(255) | NO    | PRI | NULL   |          |
+| password | varchar(255) | YES  |         | NULL   |          |
+| username | varchar(255) | YES  |         | NULL   |          |
++------------+-----------------+-------+------+-----------+------+
+3 rows in set (0.01 sec)
+
+mysql> desc approvals;
++--------------+-----------------+-------+-----+-----------+-------+
+| Field           | Type              | Null  | Key | Default | Extra |
++--------------+-----------------+-------+-----+-----------+-------+
+| user_name | varchar(255) | NO    | PRI | NULL    |         |
+| date            | datetime(6)    | YES  |        | NULL    |         |
+| policy_id   | varchar(255)  | YES  |        | NULL    |         |
+| request_id | int                   | YES  |        | NULL    |         |
+| status         | varchar(255)  | YES  |        | NULL    |         |
++-------------+-------------------+-------+-----+-----------+------+
+5 rows in set (0.00 sec)
+
+mysql> desc approved;
++--------------+------------------+-------+-----+-----------+---------+
+ | Field          |   Type               | Null | Key | Default   | Extra |
++--------------+------------------+-------+-----+-----------+---------+
+| user_name  | varchar(255) | NO   | PRI | NULL    |             |
+| date             | datetime(6)    | YES  |        | NULL    |             |
+| policy_id    | varchar(255)  | YES  |        | NULL    |             |
+| request_id   | int                  | YES  |        | NULL    |             |
+| status          | varchar(255) | YES  |        | NULL    |             |
++--------------+------------------+-------+-----+-----------+---------+
+5 rows in set (0.00 sec)
+
+mysql> desc category;
++------------------+------------------+------+-----+-----------+-------+
+ | Field               | Type               | Null | Key | Default | Extra |
++------------------+------------------+------+-----+-----------+-------+
+| categoryname | varchar(255) | NO  | PRI | NULL    |          |
++------------------+------------------+------+-----+-----------+-------+
+1 row in set (0.00 sec)
+
+mysql> desc disapproved;
++--------------+------------------+-------+-----+-----------+---------+
+ | Field          |   Type               | Null | Key | Default   | Extra |
++--------------+------------------+-------+-----+-----------+---------+
+| user_name  | varchar(255) | NO   | PRI | NULL    |             |
+| date             | datetime(6)   | YES  |        | NULL    |             |
+| policy_id    | varchar(255) | YES  |        | NULL    |             |
+| request_id   | int                 | YES  |        | NULL    |             |
+| status          | varchar(255) | YES  |        | NULL    |             |
++--------------+------------------+-------+-----+-----------+---------+
+5 rows in set (0.00 sec)
+
+mysql> desc policies;
++---------------------+-----------------+------+------+----------+-------+
+| Field                   | Type               | Null | Key | Default | Extra |
++---------------------+-----------------+------+------+----------+-------+
+| policy_name      | varchar(255) | NO   | PRI | NULL    |         |
+| amount               | double           | YES  |        | NULL    |         |
+| category             | varchar(255) | YES  |        | NULL    |         |
+| tenure_in_years | int                  | YES  |        | NULL    |         |
++---------------------+-----------------+------+------+----------+-------+
+4 rows in set (0.00 sec)
+
+mysql> desc queries;
++-------------+------------------+-------+-----+-----------+--------+
+| Field          | Type               | Null | Key | Default   | Extra |
++-------------+------------------+-------+-----+-----------+--------+
+| user_name | varchar(255) | NO   | PRI | NULL    |            |
+| mailid        | varchar(255) | YES  |        | NULL    |            |
+| queryid      | varchar(255) | YES  |        | NULL    |            |
+| question     | varchar(255) | YES  |        | NULL    |            |
++-------------+------------------+-------+-----+-----------+--------+
+4 rows in set (0.00 sec)
+
+mysql> desc user;
++--------------+-----------------+-------+-----+-----------+-------+
+| Field           | Type              | Null | Key | Default  | Extra |
++--------------+-----------------+-------+-----+-----------+-------+
+| user_name | varchar(255) | NO   | PRI | NULL    |          |
+| password   | varchar(255) | YES  |        | NULL    |          |
+| email         | varchar(255) | YES  |        | NULL    |          |
+| mobile       | bigint             | YES  |        | NULL    |          |
+| user_id      | int                  | YES  |        | NULL    |          |
++--------------+-----------------+-------+-----+-----------+-------+
+5 rows in set (0.00 sec)
+
+mysql> insert into admin(aid,username,password) values('1','123','admin');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from admin;
++-----+-------------+------------+
+ | aid  | password | username |
++-----+-------------+------------+
+ | 1     | admin       | admin     |
++-----+-------------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from user;
++--------------+------------+----------------------------+-----------------+----------+
+| user_name | password | email                           | mobile           | user_id |
++--------------+------------+----------------------------+-----------------+----------+
+| bhargavi     | 123         | bhargavi@gmail.com | 1235657890 |           0 |
+| mansi         | 108         | mansi@gmail.com      | 1890237890 |           1 |
+| vanshita     | 12345     | vanshita@yahoo.com | 1234567894 |           2 |
+| mustafa      | 1             | mustafa@yahoo.com  | 4567894123 |           3 |
+| praveen      | 555         | praveen@yahoo.com  | 6789412345 |           4 |
+| samyuktha | 111          | sam@yahoo.com        | 2344156789 |           5 |
+| santhosh     | 22222     | santhosh@yahoo.com | 5674123489 |           6 |
+| kaja            | 33333     | kaja@yahoo.com        | 3454126789 |           7 |
+| ruthrapriya | 1234       | priya@.yahoo.com      | 4564123789 |           8 |
+| aravind       | 55555     | vanshita@yahoo.com | 4345678912 |            9 |
++--------------+------------+----------------------------+-----------------+-----------+
+10 rows in set (0.01 sec)
+
+mysql> select * from category;
++------------------+
+| categoryname |
++------------------+
+| Health	        |
+| Motor 	        |
+| Home  	        |
++------------------+
+3 rows in set (0.01 sec)
+
+mysql> select * from approvals;
++---------------+-----------------------------------------+-------------+--------------+---------+
+ | user_name  | date                                             | policy_id  | request_id | status   |
++---------------+-----------------------------------------+-------------+--------------+---------+
+ | bhargavi     | 2022-10-26 18:54:50.571000   |  NULL     |   NULL   | pending  |
+ | vanshita      | 2022-10-26 19:04:40.281000   |  NULL     |   NULL   | pending  |
+ | aravind       | 2022-10-26 19:45:23.181000   |  NULL     |   NULL   | pending  |
++---------------+-----------------------------------------+-------------+--------------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select * from approved;
++---------------+-----------------------------------------+-------------+--------------+------------+
+ | user_name  | date                                             | policy_id  | request_id | status       |
++---------------+-----------------------------------------+-------------+--------------+------------+
+ | bhargavi     | 2022-10-26 19:55:22.241000   |  NULL     |   NULL     | approved  |
+ | aravind       | 2022-10-26 20:15:34.441000   |  NULL     |   NULL     | approved  |
++---------------+-----------------------------------------+-------------+--------------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from policies;
++----------------+-----------+-----------+---------------------+
+| policy_name | amount  | category | tenure_in_years |
++----------------+-----------+-----------+---------------------+
+| Bheema        |  50000   | Health    |                        2 |
+| TVS Motors |  100000 | Motor     |                        1 |	
++----------------+-----------+-----------+---------------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from queries;
++--------------+----------------------------+----------+-----------------------------------------------------+
+| user_name | mailid                          | queryid | question                                                     |
++--------------+----------------------------+----------+-----------------------------------------------------+
+| bhargavi     | bhargavi@gmail.com | Health  | What is the procedure for issuing policy? |
++--------------+----------------------------+---------+------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from disapproved;
++--------------+---------------------------------------+-------------+-------------+----------------+
+| user_name | date                       		| policy_id | request_id | status           |
++--------------+---------------------------------------+-------------+-------------+----------------+
+| vanshita     | 2022-10-26 20:45:40.432000 |  NULL     |      NULL | disapproved |
++--------------+---------------------------------------+-------------+-------------+----------------+
+1 row in set (0.00 sec)
+
+
+
